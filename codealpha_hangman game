@@ -1,0 +1,30 @@
+import random
+
+words = ["python", "apple", "computer", "program", "laptop"]
+
+word = random.choice(words)
+guessed = ["_"] * len(word)
+
+attempts = 6
+
+print("Welcome to Hangman Game!")
+
+while attempts > 0 and "_" in guessed:
+    print("\nWord:", " ".join(guessed))
+    print("Attempts Left:", attempts)
+
+    letter = input("Enter a letter: ").lower()
+
+    if letter in word:
+        for i in range(len(word)):
+            if word[i] == letter:
+                guessed[i] = letter
+        print("Correct!")
+    else:
+        attempts -= 1
+        print("Wrong Guess!")
+
+if "_" not in guessed:
+    print("\nCongratulations! You guessed:", word)
+else:
+    print("\nGame Over! The word was:", word)
